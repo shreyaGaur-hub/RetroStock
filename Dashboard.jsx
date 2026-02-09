@@ -14,10 +14,7 @@ function Dashboard({ gameState, setGameState }) {
 
     if (data.bankrupt) {
       alert("💀 You went bankrupt!");
-      localStorage.setItem(
-        "lastScore",
-        data.history.length
-      );
+      localStorage.setItem("lastScore", data.history.length);
       window.location.reload();
     }
 
@@ -25,11 +22,12 @@ function Dashboard({ gameState, setGameState }) {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>RetroStock Survival Simulator</h1>
+    <div>
       <h3>Current Date: {gameState.date}</h3>
 
+      {/* --- TIMER COMPONENT UPDATED --- */}
       <Timer onTick={advanceMonth} />
+      {/* ------------------------------- */}
 
       <Portfolio
         portfolio={gameState.portfolio}
