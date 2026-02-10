@@ -16,22 +16,27 @@ export function simulateMonth(currentDate, portfolio) {
 
   return {
     updatedPortfolio,
-    total,
+    total: parseFloat(total.toFixed(2)),
     monthlyReturn,
     event: getEvent(currentDate)
   };
 }
 
 export function executeTrade(portfolio, type, amount) {
-  if (type === "buy" && portfolio.cash >= amount) {
-    portfolio.cash -= amount;
-    portfolio.stocks += amount;
+  let newPortfolio = {...portfolio};
+  
+  if (type === "buy" && newPortfolio.cash >= amount) {
+    newPortfolio.cash -= amount;
+    newPortfolio.stocks += amount;
   }
 
-  if (type === "sell" && portfolio.stocks >= amount) {
-    portfolio.stocks -= amount;
-    portfolio.cash += amount;
+  if (type === "sell" && newPortfolio.stocks >= amount) {
+    newPortfolio.stocks -= amount;
+    newPortfolio.cash += amount;
   }
 
-  return portfolio;
+  return {
+    cash: parseFloat(newPortfolio.cash.toFixed(2)),
+    stocks: parseFloat(newPortfolio.stocks.toFixed(2))
+  };
 }

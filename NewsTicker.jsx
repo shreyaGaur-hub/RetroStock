@@ -1,14 +1,24 @@
-// client/src/NewsTicker.jsx
 import React from "react";
 
 function NewsTicker({ narration }) {
-  if (!narration) return <div>Waiting for market data...</div>;
-
   return (
-    <div style={{ border: "1px solid #ccc", padding: "10px", marginTop: "10px" }}>
-      <h2>Market News & Analysis</h2>
-      {/* Using pre-wrap to respect line breaks from the AI */}
-      <p style={{ whiteSpace: "pre-wrap" }}>{narration}</p>
+    <div className="card" style={{borderColor: '#1e293b'}}>
+      <h2 style={{fontSize: '1.2rem', marginBottom: '1rem', color: '#38bdf8'}}>Market Analysis</h2>
+      
+      {!narration ? (
+        <p style={{color: '#475569', fontStyle: 'italic'}}>Waiting for initial data stream...</p>
+      ) : (
+        <div style={{
+          fontSize: '0.9rem', 
+          color: '#e2e8f0', 
+          lineHeight: '1.6',
+          height: '300px',
+          overflowY: 'auto',
+          paddingRight: '5px'
+        }}>
+          <p style={{ whiteSpace: "pre-wrap" }}>{narration}</p>
+        </div>
+      )}
     </div>
   );
 }
